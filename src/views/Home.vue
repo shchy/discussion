@@ -1,18 +1,62 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <button class="new-discussion">新規作成</button>
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
+    <DiscussionCard />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { useAuthStore } from "@/stores/auth";
+import DiscussionCard from "@/components/DiscussionCard.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
-    HelloWorld,
+    DiscussionCard,
+  },
+  setup() {
+    const state = useAuthStore();
+    console.log(state);
+    return {
+      ...state,
+    };
   },
 });
 </script>
+
+<style lang="scss">
+.home {
+  display: flex;
+  flex-direction: column;
+
+  .new-discussion {
+    align-self: flex-end;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background-color: #42b983;
+    color: white;
+  }
+}
+</style>
