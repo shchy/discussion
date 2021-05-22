@@ -40,13 +40,5 @@ export default defineComponent({
 .discussion-list {
   display: flex;
   flex-direction: column;
-  .new-discussion {
-    align-self: flex-end;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 6px;
-    background-color: #42b983;
-    color: white;
-  }
 }
 </style>
