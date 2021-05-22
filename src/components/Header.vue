@@ -33,8 +33,6 @@ export default defineComponent({
   background: #2c3e50;
   color: white;
   display: flex;
-  padding: 0.5rem;
-  min-height: 1rem;
 
   .title {
     font-size: inherit;

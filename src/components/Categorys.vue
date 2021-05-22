@@ -2,24 +2,30 @@
   <aside class="nav">
     <h3 class="title">カテゴリ</h3>
     <div class="categorys">
-      <router-link to="/">Gitlab</router-link>
-      <router-link to="/asdf">要望</router-link>
+      <router-link
+        v-for="category in categorys"
+        :key="category.id"
+        :to="'/category/' + category.id"
+        >{{ category.name }}</router-link
+      >
     </div>
   </aside>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { useAuthStore } from "@/stores/auth";
+import { defineComponent, reactive, PropType } from "vue";
+import { Category } from "@/services/Models";
 
 export default defineComponent({
   name: "Categorys",
+  props: {
+    categorys: [] as PropType<Category[]>,
+  },
 });
 </script>
 
 <style lang="scss">
 .nav {
-  width: 18rem;
   padding: 0.5rem;
   .title {
     font-size: inherit;

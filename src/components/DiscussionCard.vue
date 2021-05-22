@@ -3,28 +3,29 @@
     <div class="voting">
       <fa icon="arrow-up" />
       <div class="vote">
-        <span>1</span>
+        <span>{{ discussion.vote }}</span>
       </div>
     </div>
     <div class="display">
-      <div class="title">Title</div>
+      <div class="title">{{ discussion.title }}</div>
       <div class="info">
-        <span>name</span>
-        <span>name</span>
-        <span>name</span>
-        <span>name</span>
-        <span>name</span>
-        <span>name</span>
+        <span>{{ discussion.createUserName }}</span>
+        <span>{{ discussion.created }}</span>
+        <span>{{ discussion.categoryName }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { Discussion } from "@/services/Models";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "DiscussionCard",
+  props: {
+    discussion: Discussion,
+  },
   setup() {
     return {};
   },

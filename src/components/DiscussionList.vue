@@ -1,37 +1,25 @@
 <template>
   <div class="discussion-list">
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
+    <DiscussionCard
+      v-for="discussion in discussions"
+      :key="discussion.id"
+      :discussion="discussion"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import DiscussionCard from "@/components/DiscussionCard.vue";
+import { Discussion } from "@/services/Models";
 
 export default defineComponent({
   name: "DiscussionList",
   components: {
     DiscussionCard,
+  },
+  props: {
+    discussions: [] as PropType<Discussion[]>,
   },
 });
 </script>

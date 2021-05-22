@@ -1,11 +1,11 @@
 import { inject, InjectionKey, reactive } from "vue";
 
-type AuthUser = {
+export interface IAuthUser {
   displayName: string;
   photoURL: string;
 };
 
-const dummyUser: AuthUser = {
+const dummyUser: IAuthUser = {
   displayName: "ゲスト",
   photoURL: "",
 };
@@ -17,7 +17,7 @@ const authStore = () => {
     displayName: "ゲスト",
     photoURL: "",
   });
-  const setUser = (user: AuthUser | null) => {
+  const setUser = (user: IAuthUser | null) => {
     state.isLoggedin = !!user;
     user = user ?? dummyUser;
     if (user) {
@@ -30,7 +30,7 @@ const authStore = () => {
     setUser(dummyUser);
   };
   const signout = () => setUser(null);
-  const updateUser = (input: AuthUser) => {
+  const updateUser = (input: IAuthUser) => {
     setUser(input);
   };
 
