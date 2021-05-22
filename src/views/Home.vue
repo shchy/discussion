@@ -1,39 +1,19 @@
 <template>
   <div class="home">
     <button class="new-discussion">新規作成</button>
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
-    <DiscussionCard />
+    <DiscussionList />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useAuthStore } from "@/stores/auth";
-import DiscussionCard from "@/components/DiscussionCard.vue";
+import DiscussionList from "@/components/DiscussionList.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
-    DiscussionCard,
+    DiscussionList,
   },
   setup() {
     const state = useAuthStore();
@@ -49,7 +29,6 @@ export default defineComponent({
 .home {
   display: flex;
   flex-direction: column;
-
   .new-discussion {
     align-self: flex-end;
     border: none;
