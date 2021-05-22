@@ -26,7 +26,6 @@ export default defineComponent({
       categorys: [] as Category[],
     });
     apiService.getCategorys().then((xs) => {
-      console.log(xs);
       data.categorys.length = 0;
       xs.forEach((x) => data.categorys.push(x));
     });

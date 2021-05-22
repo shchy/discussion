@@ -30,7 +30,6 @@ export default defineComponent({
         promise = apiService.getDiscussions(categoryID);
       }
       promise.then((xs) => {
-        console.log(xs);
         data.discussions.length = 0;
         xs.forEach((x) => data.discussions.push(x));
       });
@@ -48,15 +47,6 @@ export default defineComponent({
     return {
       ...data,
     };
-  },
-  created() {
-    console.log("created");
-  },
-  activated() {
-    console.log("activated");
-  },
-  mounted() {
-    console.log("mounted");
   },
 });
 </script>

@@ -9,9 +9,9 @@
     <div class="display">
       <div class="title">{{ discussion.title }}</div>
       <div class="info">
-        <span>{{ discussion.createUserName }}</span>
-        <span>{{ discussion.created }}</span>
         <span>{{ discussion.categoryName }}</span>
+        <span>{{ discussion.createUserName }}</span>
+        <span>{{ "作成日:" + sinceDate(discussion.created) }}</span>
       </div>
     </div>
   </div>
@@ -20,9 +20,11 @@
 <script lang="ts">
 import { Discussion } from "@/services/Models";
 import { defineComponent, PropType } from "vue";
+import { dateMixin } from "@/mixin/dateMethods";
 
 export default defineComponent({
   name: "DiscussionCard",
+  mixins: [dateMixin],
   props: {
     discussion: Discussion,
   },

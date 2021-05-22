@@ -25,7 +25,7 @@ export class Discussion {
   vote = 0;
   content = "";
   createUserName = "";
-  created = Date.now();
+  created = new Date();
   categoryName = "";
   constructor(init?: Partial<Discussion>) {
     Object.assign(this, init);

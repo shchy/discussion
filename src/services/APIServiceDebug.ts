@@ -5,10 +5,13 @@ const categorys = Array.from(Array(10).keys()).map(n => new Category({
   name: `Category${n}`,
 }));
 const discussions = categorys.flatMap(category => Array.from(Array(10).keys()).map(n => new Discussion({
-  id: n.toString(),
+  id: `${category.id}-${n}`,
   title: `title${n}`,
+  vote: n,
   content: `content${n}`,
   categoryName: category.name,
+  createUserName: `user${n}`,
+  created: new Date(Date.now() - (1000 * 60 * 60 * 24) * n),
 })));
 
 export default {
