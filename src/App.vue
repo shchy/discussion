@@ -1,19 +1,22 @@
 <template>
-  <div class="root">
-    <Header class="header" />
-    <div class="view">
-      <Categorys class="categorys" :categorys="categorys" />
-      <router-view class="contents" />
-    </div>
-  </div>
+  <Suspense>
+    <template #default>
+      <div class="root">
+        <Header class="header" />
+        <div class="view">
+          <Categorys class="categorys" v-bind:categorys="data.categorys" />
+          <router-view class="contents" />
+        </div>
+      </div> </template
+    ><template #fallback> Loading... </template>
+  </Suspense>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, onMounted } from "vue";
 import Header from "@/components/Header.vue";
 import Categorys from "@/components/Categorys.vue";
-import apiService from "@/services/APIServiceDebug";
-import { Category } from "@/services/Models";
+import discussion from "@/services/discussionBLOC";
 
 export default defineComponent({
   name: "App",
@@ -22,16 +25,11 @@ export default defineComponent({
     Categorys,
   },
   setup() {
-    const data = reactive({
-      categorys: [] as Category[],
+    onMounted(async () => {
+      await discussion.init();
     });
-    apiService.getCategorys().then((xs) => {
-      data.categorys.length = 0;
-      xs.forEach((x) => data.categorys.push(x));
-    });
-
     return {
-      ...data,
+      ...discussion,
     };
   },
 });

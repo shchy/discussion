@@ -25,9 +25,11 @@ export class Discussion {
   vote = 0;
   content = "";
   createUserName = "";
-  created = new Date();
+  created = 0;
+  categoryID = "";
   categoryName = "";
   constructor(init?: Partial<Discussion>) {
     Object.assign(this, init);
   }
+  get createdDate(): Date { return new Date(this.created); }
 }

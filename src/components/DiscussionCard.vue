@@ -1,7 +1,9 @@
 <template>
   <div class="discussion-card">
     <div class="voting">
-      <fa icon="arrow-up" />
+      <button @click="vote(discussion.id)">
+        <fa icon="arrow-up" />
+      </button>
       <div class="vote">
         <span>{{ discussion.vote }}</span>
       </div>
@@ -19,8 +21,9 @@
 
 <script lang="ts">
 import { Discussion } from "@/services/Models";
-import { defineComponent, PropType } from "vue";
+import { defineComponent } from "vue";
 import { dateMixin } from "@/mixin/dateMethods";
+import discussion from "@/services/discussionBLOC";
 
 export default defineComponent({
   name: "DiscussionCard",
@@ -29,7 +32,9 @@ export default defineComponent({
     discussion: Discussion,
   },
   setup() {
-    return {};
+    return {
+      ...discussion,
+    };
   },
 });
 </script>
@@ -41,6 +46,15 @@ export default defineComponent({
   padding: 1rem;
 
   .voting {
+    button {
+      border: none;
+      background-color: transparent;
+
+      &:hover {
+        transform: translateY(-3px);
+        transition: transform 0.1s;
+      }
+    }
     .vote {
       background-color: #a2e9c9;
       border-radius: 1rem;

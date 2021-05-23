@@ -1,7 +1,7 @@
 <template>
   <div class="discussion-list">
     <DiscussionCard
-      v-for="discussion in sort(discussions)"
+      v-for="discussion in sortedList"
       :key="discussion.id"
       :discussion="discussion"
     />
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { computed, defineComponent, PropType } from "vue";
 import DiscussionCard from "@/components/DiscussionCard.vue";
 import { Discussion } from "@/services/Models";
 
@@ -19,12 +19,22 @@ export default defineComponent({
     DiscussionCard,
   },
   props: {
-    discussions: [] as PropType<Discussion[]>,
+    discussions: { type: Object as PropType<Discussion[]> },
   },
-  methods: {
-    sort(discussions: Discussion[]) {
-      return discussions.sort((x) => x.vote).reverse();
-    },
+  setup(props) {
+    const sortedList = computed(() => {
+      if (props.discussions === undefined) {
+        return [];
+      }
+      const xs = props.discussions
+        .slice()
+        .sort((a, b) => a.vote - b.vote)
+        .reverse();
+      return xs;
+    });
+    return {
+      sortedList,
+    };
   },
 });
 </script>

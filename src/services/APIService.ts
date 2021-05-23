@@ -6,11 +6,11 @@ export default {
   getCategorys(): Promise<Category[]> {
     return this.getClient().get("/categorys");
   },
-  getDiscussions(categoryID: string): Promise<Discussion[]> {
-    return this.getClient().get(`/discussions/categorys/${categoryID}`);
-  },
-  getAllDiscussions(): Promise<Discussion[]> {
+  getDiscussions(): Promise<Discussion[]> {
     return this.getClient().get(`/discussions/`);
+  },
+  vote(discussionID: string): Promise<void> {
+    return this.getClient().post(`/discussions/${discussionID}/vote/`);
   },
   login(id: string, password: string): Promise<User> {
     return this.getClient().post("/login", { id, password });

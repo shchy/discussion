@@ -1,8 +1,8 @@
 export const dateMixin = {
   methods: {
-    sinceDate(v: Date) {
+    sinceDate(v: number) {
       const now = new Date();
-      const days = Math.floor((now.valueOf() - v.valueOf()) / (1000 * 3600 * 24));
+      const days = Math.floor((now.valueOf() - v) / (1000 * 3600 * 24));
       return `${days}日前`;
     }
   }

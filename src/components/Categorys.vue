@@ -13,13 +13,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType } from "vue";
+import { defineComponent, PropType } from "vue";
 import { Category } from "@/services/Models";
 
 export default defineComponent({
   name: "Categorys",
   props: {
-    categorys: [] as PropType<Category[]>,
+    categorys: { type: Object as PropType<Category[]> },
   },
 });
 </script>

@@ -9,25 +9,35 @@ const discussions = categorys.flatMap(category => Array.from(Array(10).keys()).m
   title: `title${n}`,
   vote: n,
   content: `content${n}`,
+  categoryID: category.id,
   categoryName: category.name,
   createUserName: `user${n}`,
-  created: new Date(Date.now() - (1000 * 60 * 60 * 24) * n),
+  created: new Date(Date.now() - (1000 * 60 * 60 * 24) * n).valueOf(),
 })));
 
 export default {
 
   getCategorys(): Promise<Category[]> {
     console.log("getCategorys");
-    return this.toPromise(categorys);
+    const json = JSON.stringify(categorys);
+    const copy = (JSON.parse(json) as Array<any>).map(x => new Category(x));
+    return this.toPromise(copy);
   },
-  getDiscussions(categoryID: string): Promise<Discussion[]> {
+  getDiscussions(): Promise<Discussion[]> {
     console.log("getDiscussions");
-    const category = categorys.find(c => c.id == categoryID);
-    return this.toPromise(discussions.filter(x => x.categoryName == category?.name));
+    const json = JSON.stringify(discussions);
+    const copy = (JSON.parse(json) as Array<any>).map(x => new Discussion(x));
+    return this.toPromise(copy);
   },
-  getAllDiscussions(): Promise<Discussion[]> {
-    console.log("getAllDiscussions");
-    return this.toPromise(discussions);
+  vote(discussionID: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const discussion = discussions.find(x => x.id == discussionID);
+      if (discussion === undefined) {
+        return reject("not found");
+      }
+      discussion.vote += 1;
+      resolve();
+    });
   },
   login(id: string, password: string): Promise<User> {
     console.log("login");

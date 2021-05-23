@@ -1,16 +1,15 @@
 <template>
   <div class="category">
     <button class="new-discussion">新規作成</button>
-    <DiscussionList :discussions="discussions" />
+    <DiscussionList :discussions="filteredList" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { computed, defineComponent } from "vue";
+import { useRoute } from "vue-router";
 import DiscussionList from "@/components/DiscussionList.vue";
-import { Category, Discussion } from "@/services/Models";
-import apiService from "@/services/APIServiceDebug";
+import discussion from "@/services/discussionBLOC";
 
 export default defineComponent({
   name: "Category",
@@ -18,34 +17,17 @@ export default defineComponent({
     DiscussionList,
   },
   setup() {
-    const data = reactive({
-      discussions: [] as Discussion[],
-    });
-
-    const updateList = (categoryID: string) => {
-      var promise: Promise<Discussion[]>;
-      if (categoryID === undefined) {
-        promise = apiService.getAllDiscussions();
-      } else {
-        promise = apiService.getDiscussions(categoryID);
-      }
-      promise.then((xs) => {
-        data.discussions.length = 0;
-        xs.forEach((x) => data.discussions.push(x));
-      });
-    };
-
     const route = useRoute();
-    watch(
-      () => route.params.id,
-      async (newId) => {
-        updateList(newId as string);
+    const filteredList = computed(() => {
+      const categoryID = route.params.id;
+      const xs = discussion.data.discussions;
+      if (categoryID === undefined) {
+        return xs;
       }
-    );
-    updateList(route.params.id as string);
-
+      return xs.slice().filter((x) => x.categoryID == categoryID);
+    });
     return {
-      ...data,
+      filteredList,
     };
   },
 });
