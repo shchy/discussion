@@ -1,9 +1,12 @@
 import { User, Category, Discussion } from "@/services/Models";
 
-const categorys = Array.from(Array(10).keys()).map(n => new Category({
-  id: n.toString(),
-  name: `Category${n}`,
-}));
+const categorys = Array.from(Array(10).keys()).map(
+  (n) =>
+    new Category({
+      id: n.toString(),
+      name: `Category${n}`,
+    })
+);
 const discussions = categorys.flatMap(category => Array.from(Array(10).keys()).map(n => new Discussion({
   id: `${category.id}-${n}`,
   title: `title${n}`,

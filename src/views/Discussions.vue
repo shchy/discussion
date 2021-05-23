@@ -1,5 +1,5 @@
 <template>
-  <div class="category">
+  <div class="discussions">
     <button class="new-discussion">新規作成</button>
     <DiscussionList :discussions="filteredList" />
   </div>
@@ -12,14 +12,14 @@ import DiscussionList from "@/components/DiscussionList.vue";
 import discussion from "@/services/discussionBLOC";
 
 export default defineComponent({
-  name: "Category",
+  name: "Discussions",
   components: {
     DiscussionList,
   },
   setup() {
     const route = useRoute();
     const filteredList = computed(() => {
-      const categoryID = route.params.id;
+      const categoryID = route.params.categoryID;
       const xs = discussion.data.discussions;
       if (categoryID === undefined) {
         return xs;
@@ -34,7 +34,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.category {
+.discussions {
   display: flex;
   flex-direction: column;
   .new-discussion {

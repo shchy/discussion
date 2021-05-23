@@ -1,28 +1,28 @@
 <template>
-  <Suspense>
+  <suspense>
     <template #default>
       <div class="root">
         <Header class="header" />
         <div class="view">
-          <Categorys class="categorys" v-bind:categorys="data.categorys" />
+          <CategoryList class="categorys" v-bind:categorys="data.categorys" />
           <router-view class="contents" />
         </div>
       </div> </template
     ><template #fallback> Loading... </template>
-  </Suspense>
+  </suspense>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
 import Header from "@/components/Header.vue";
-import Categorys from "@/components/Categorys.vue";
+import CategoryList from "@/components/CategoryList.vue";
 import discussion from "@/services/discussionBLOC";
 
 export default defineComponent({
   name: "App",
   components: {
     Header,
-    Categorys,
+    CategoryList,
   },
   setup() {
     onMounted(async () => {

@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h1 class="title">ナレッジ</h1>
+    <h1 class="title">ディスカッションする何か</h1>
     <div class="separator-small"></div>
     <div class="menu">
       <!-- <router-link to="/">Home</router-link>

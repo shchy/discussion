@@ -1,5 +1,7 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { h } from 'vue'
+import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from "vue-router";
 import Discussions from "../views/Discussions.vue";
+import Discussion from "../views/Discussion.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -8,10 +10,24 @@ const routes: Array<RouteRecordRaw> = [
     component: Discussions,
   },
   {
-    path: "/category/:id",
+    path: "/category/:categoryID",
     name: "Category",
-    component: Discussions,
+    component: { render: () => h(RouterView) },
+    children: [
+      {
+        path: "",
+        name: "Discussions",
+        component: Discussions,
+      },
+      {
+        path: "discuttion/:id",
+        name: "Discussion",
+        component: Discussion,
+      },
+    ],
   },
+
+
 ];
 
 const router = createRouter({

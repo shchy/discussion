@@ -5,7 +5,10 @@
       <router-link
         v-for="category in categorys"
         :key="category.id"
-        :to="'/category/' + category.id"
+        :to="{
+          name: 'Discussions',
+          params: { categoryID: category.id },
+        }"
         >{{ category.name }}</router-link
       >
     </div>
@@ -17,7 +20,7 @@ import { defineComponent, PropType } from "vue";
 import { Category } from "@/services/Models";
 
 export default defineComponent({
-  name: "Categorys",
+  name: "CategoryList",
   props: {
     categorys: { type: Object as PropType<Category[]> },
   },
@@ -47,7 +50,7 @@ export default defineComponent({
       &:hover {
         background-color: rgb(241, 241, 241);
       }
-      &.router-link-exact-active {
+      &.router-link-active {
         background-color: #42b983;
         color: white;
       }
