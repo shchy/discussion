@@ -1,5 +1,10 @@
-import { h } from 'vue'
-import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from "vue-router";
+import { h } from "vue";
+import {
+  createRouter,
+  createWebHistory,
+  RouteRecordRaw,
+  RouterView,
+} from "vue-router";
 import Discussions from "../views/Discussions.vue";
 import Discussion from "../views/Discussion.vue";
 
@@ -26,8 +31,6 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-
-
 ];
 
 const router = createRouter({

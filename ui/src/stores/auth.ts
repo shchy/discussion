@@ -3,7 +3,7 @@ import { inject, InjectionKey, reactive } from "vue";
 export interface IAuthUser {
   displayName: string;
   photoURL: string;
-};
+}
 
 const dummyUser: IAuthUser = {
   displayName: "ゲスト",

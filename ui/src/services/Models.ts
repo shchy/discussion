@@ -31,5 +31,7 @@ export class Discussion {
   constructor(init?: Partial<Discussion>) {
     Object.assign(this, init);
   }
-  get createdDate(): Date { return new Date(this.created); }
+  get createdDate(): Date {
+    return new Date(this.created);
+  }
 }

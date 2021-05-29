@@ -19,7 +19,6 @@
 <script lang="ts">
 import { Discussion } from "@/services/Models";
 import { defineComponent } from "vue";
-import { dateMixin } from "@/mixin/dateMethods";
 import Vote from "@/components/Vote.vue";
 import DiscussionInfo from "@/components/DiscussionInfo.vue";
 import discussion from "@/services/discussionBLOC";
